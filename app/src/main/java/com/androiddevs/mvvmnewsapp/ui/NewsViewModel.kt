@@ -1,10 +1,10 @@
-package com.androiddevs.mvvmnewsapp.viewmodel
+package com.androiddevs.mvvmnewsapp.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androiddevs.mvvmnewsapp.model.NewsResponse
-import com.androiddevs.mvvmnewsapp.repo.NewsRepository
+import com.androiddevs.mvvmnewsapp.models.NewsResponse
+import com.androiddevs.mvvmnewsapp.repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -27,6 +27,7 @@ class NewsViewModel(
         breakingNews.postValue(Resource.Loading())
         val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
         breakingNews.postValue(handleBreakingNewsResponse(response))
+
     }
 
     fun searchNews(searchQuery: String) = viewModelScope.launch {
